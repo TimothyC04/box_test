@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Box Popper</title>
+</head>
+<style type="text/css">
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+<body>
+	<center><canvas id="canvas" width="600" height="400"></canvas></center>
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+
+		var box = createBox();
+
+		function createBox() {
+			return {
+				x: 100,
+				y: 50,
+				size: 40,
+				color: "blue"
+			}
+		}
+		function drawBox(){
+			context.fillStyle = box.color
+			context.fillRect(box.x,box.y,
+				box.size,box.size)
+		}
+
+		drawBox();
+	</script>
+</body>
+</html>	
