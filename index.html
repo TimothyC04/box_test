@@ -14,27 +14,37 @@
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
 
-		var boxes = [];
+		var boxes = [{
+			x:100,
+			y:50,
+			size,"#8B008B"
+			color
+		}
+		{
+			x:100,
+			y:50,
+			size,"#8B008B"
+			color
+		}
+		{
+			x:100,
+			y:50,
+			size,"#8B008B"
+			color
+		}
+		];
 		var box = createBox();
 
-		function createBox() {
-			return {
-				x: 100,
-				y: 50,
-				size: 40,
-				color: "blue"
-			}
-
-			function createMultipleBoxes(){
-				for (i < 0; i < boxes.length; i++){
-					boxes[i].push(createBox());
-				}
-			}
 		}
 		function drawBox(){
-			context.fillStyle = box.color
-			context.fillRect(box.x,box.y,
-				box.size,box.size)
+			for (i = 0;i < boxes.length; i++){
+				context.fillStyle = boxes[i].color
+				context.fillRect(
+					boxes[i].x,
+					boxes[i].y,
+					boxes[i].size,
+					boxes[i].size)
+			}	
 		}
 
 		drawBox();
