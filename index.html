@@ -18,6 +18,17 @@
 
 		var maxSize = 40
 
+		var colors = [
+			"red",
+			"blue",
+			"green",
+			"#8B008B",
+			"orange",
+			"yellow",
+			"pink",
+			"purple"
+		]
+
 		function randomNum(n){
 			return Math.floor(Math.random()*n)+1;
 		}
@@ -27,7 +38,7 @@
 				x: randomNum(canvas.width - maxSize),
 				y: randomNum(canvas.height - maxSize),
 				size: randomNum(maxSize),
-				color: "#8B008B"
+				color: colors[randomNum(colors.length)]
 			}
 		}
 
