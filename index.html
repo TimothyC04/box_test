@@ -14,26 +14,29 @@
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
 
-		var boxes = [
-		{
-			x:100,
-			y:50,
-			size:30,
-			color:"#8B008B"
-		},
-		{
-			x:100,
-			y:50,
-			size:30,
-			color:"#8B008B"
-		},
-		{
-			x:100,
-			y:50,
-			size:30,
-			color:"#8B008B"
+		var boxes = [];
+
+		var maxSize = 40
+
+		function randomNum(n){
+			return Math.floor(Math.random()*n)+1;
 		}
-		];
+
+		function createBox() {
+			return {
+				x: randomNum(canvas.width - maxSize),
+				y: randomNum(canvas.height - maxSize),
+				size: 40,
+				color: "#8B008B"
+			}
+		}
+
+		function createMultipleBoxes(){
+			for (i = 0;i < 3; i++){
+				boxes.push(createBox());
+			}
+		}
+		
 
 		function drawBox(){
 			for (i = 0;i < boxes.length; i++){
@@ -46,6 +49,7 @@
 			}	
 		}
 
+		createMultipleBoxes();
 		drawBox();
 	</script>
 </body>
