@@ -16,9 +16,11 @@
 
 		var boxes = [];
 
-		var maxDuration = 50
-		var maxSize = 40
-		var maxNumber = 20
+		var settings = {
+			maxDuration:75,
+			maxSize:40,
+			maxNumber:20
+		}
 
 		var colors = [
 			"red",
@@ -37,11 +39,11 @@
 
 		function createBox() {
 			return {
-				x: randomNum(canvas.width - maxSize),
-				y: randomNum(canvas.height - maxSize),
-				size: randomNum(maxSize),
+				x: randomNum(canvas.width - settings.maxSize),
+				y: randomNum(canvas.height - settings.maxSize),
+				size: randomNum(settings.maxSize),
 				color: colors[randomNum(colors.length)],
-				duration:randomNum(maxDuration)+5
+				duration:randomNum(settings.maxDuration)+5
 			}
 		}
 
@@ -79,7 +81,7 @@
 			requestAnimationFrame(run);
 		}
 
-		createMultipleBoxes(maxNumber);
+		createMultipleBoxes(settings.maxNumber);
 		run();
 	</script>
 </body>
