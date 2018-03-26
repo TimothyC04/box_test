@@ -16,6 +16,7 @@
 
 		var boxes = [];
 
+		var maxDuration = 50
 		var maxSize = 40
 
 		var colors = [
@@ -39,7 +40,7 @@
 				y: randomNum(canvas.height - maxSize),
 				size: randomNum(maxSize),
 				color: colors[randomNum(colors.length)],
-				duration:randomNum(10)
+				duration:randomNum(maxDuration)+5
 			}
 		}
 
@@ -49,6 +50,11 @@
 			}
 		}
 		
+		function reduceDuration(){
+			for(i = 0;i < boxes.length;i++){
+				boxes[i].duration--
+			}
+		}
 
 		function drawBox(){
 			for (i = 0;i < boxes.length; i++){
@@ -61,8 +67,12 @@
 			}	
 		}
 
+		function run(){
+			drawBox();
+			reduceDuration();
+		}
 		createMultipleBoxes();
-		drawBox();
+		run();
 	</script>
 </body>
 </html>	
