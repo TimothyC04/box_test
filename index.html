@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Box Popper</title>
+	<title>Circle Popper</title>
+	<center><h1>Circle Popper</h1></center>
 </head>
 <style type="text/css">
 		canvas {
@@ -14,12 +15,13 @@
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext("2d");
 
-		var boxes = [];
+		var circles = [];
 
 		var settings = {
 			maxDuration:75,
 			maxSize:40,
-			maxNumber:20
+			maxNumber:20,
+			maxSpeed:3
 		}
 
 		var colors = [
@@ -37,51 +39,57 @@
 			return Math.floor(Math.random()*n)+1;
 		}
 
-		function createBox() {
+		function createCircle() {
 			return {
 				x: randomNum(canvas.width - settings.maxSize),
 				y: randomNum(canvas.height - settings.maxSize),
 				size: randomNum(settings.maxSize),
 				color: colors[randomNum(colors.length)],
-				duration:randomNum(settings.maxDuration)+5
+				duration:randomNum(settings.maxDuration)+ 10,
+				speed: randomNum(settings.maxSpeed)+ 2
 			}
 		}
 
-		function createMultipleBoxes(n){
+		function createMultipleCircles(n){
 			for (i = 0;i < n; i++){
-				boxes.push(createBox());
+				circles.push(createCircle());
 			}
 		}
 		
 		function reduceDuration(){
-			for(i = 0;i < boxes.length;i++){
-				boxes[i].duration--
+			for(i = 0;i < circles.length;i++){
+				circles[i].duration--
 
-				if(boxes[i].duration <= 0){
-					boxes[i] = createBox();
+				if(circles[i].duration <= 0){
+					circles[i] = createCircle();
 				}
 			}
 		}
 
-		function drawBox(){
-			for (i = 0;i < boxes.length; i++){
-				context.fillStyle = boxes[i].color
-				context.fillRect(
-					boxes[i].x,
-					boxes[i].y,
-					boxes[i].size,
-					boxes[i].size)
+		function drawCircles(){
+			for (i = 0;i < circles.length; i++){
+				context.beginPath()
+				context.fillStyle = circles[i].color;
+				context.arc(
+					circles[i].x,
+					circles[i].y,
+					circles[i].size,
+					0,2 * Math.PI);
+				context.fill();
+				context.stroke();
+
+				circles[i].x += circles[i].speed;
 			}	
 		}
 
 		function run(){
 			context.clearRect(0,0,canvas.width,canvas.height);
-			drawBox();
+			drawCircles();
 			reduceDuration();
 			requestAnimationFrame(run);
 		}
 
-		createMultipleBoxes(settings.maxNumber);
+		createMultipleCircles(settings.maxNumber);
 		run();
 	</script>
 </body>
