@@ -26,7 +26,7 @@
 		var settings = {
 			maxDuration:75,
 			maxSize:40,
-			maxNumber:75,
+			maxNumber:100,
 			maxSpeed:3
 		}
 
@@ -54,7 +54,8 @@
 				size: randomNum(settings.maxSize),
 				color: colors[randomNum(colors.length)],
 				duration:randomNum(settings.maxDuration)+ 10,
-				speed: randomNum(settings.maxSpeed)+ 2
+				speed: randomNum(settings.maxSpeed)+ 2,
+				direction:randomNum(4)
 			}
 		}
 
@@ -86,7 +87,15 @@
 				context.fill();
 				context.stroke();
 
-				circles[i].x += circles[i].speed;
+				if(circles[i].direction == 1){
+					circles[i].x += circles[i].speed;
+				} else if(circles[i].direction == 2){
+					circles[i].x -= circles[i].speed;
+				} else if(circles[i].direction == 3){
+					circles[i].y += circles[i].speed;
+				} else if(circles[i].direction == 4){
+					circles[i].y -= circles[i].speed;
+				}
 			}	
 		}
 
